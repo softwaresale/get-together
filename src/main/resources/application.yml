@@ -1,0 +1,18 @@
+
+auth0:
+  audience: https://gettogether.com/api
+  issuer: https://gettogether.us.auth0.com/
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://gettogether.us.auth0.com/
+  datasource:
+    username: gettogether-admin
+    password: password
+    url: jdbc:postgresql://localhost:5432/gettogether
+  jpa:
+    hibernate:
+      ddl-auto: create-drop

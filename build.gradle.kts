@@ -33,6 +33,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+	implementation("org.springframework.security:spring-security-oauth2-jose")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
@@ -49,8 +50,12 @@ dependencies {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
 	testImplementation("org.springframework.security:spring-security-test")
+
 	// YAML support
 	implementation("org.yaml:snakeyaml:1.23")
+
+	// Bar code generation
+	implementation("com.google.zxing:core:3.4.0")
 }
 
 tasks.withType<ProcessResources> {
