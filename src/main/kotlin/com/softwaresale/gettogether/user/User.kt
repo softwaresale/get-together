@@ -1,5 +1,7 @@
 package com.softwaresale.gettogether.user
 
+import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import com.softwaresale.gettogether.auth0.Auth0UserInfo
 import com.softwaresale.gettogether.group.Group
 import javax.persistence.*
@@ -13,8 +15,11 @@ class User(
         @Id val id: String,
 
         @OneToMany(mappedBy = "leader", cascade = [CascadeType.ALL])
+        @JsonBackReference("ownedGroups")
         val ownedGroups: MutableList<Group> = mutableListOf(),
+
         @ManyToMany(cascade = [CascadeType.ALL])
+        @JsonBackReference("memberGroups")
         val memberGroups: MutableList<Group> = mutableListOf()
 ) {
         companion object {

@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator
 import org.springframework.security.oauth2.core.OAuth2TokenValidator
 import org.springframework.security.oauth2.jwt.*
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository
 
 @EnableWebSecurity
 class SecurityConfig(
@@ -22,6 +23,9 @@ class SecurityConfig(
                 ?.authorizeRequests {
                     it.mvcMatchers("/api/**").authenticated()
                     it.mvcMatchers("/**").permitAll() // Allow access to all other routes that aren't api scoped
+                }
+                ?.csrf {
+                    it.csrfTokenRepository(CookieCsrfTokenRepository())
                 }
     }
 

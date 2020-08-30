@@ -25,14 +25,22 @@ class UserService(
         return if(opt.isPresent) opt.get() else null
     }
 
+    fun save(user: User) = this.userRepository.save(user)
+
     fun getCurrentUser(): User? {
         val token = this.getAccessToken()
         return this.getById(token.subject) // Subject is userId
     }
 
+    /**
+     * Creates a new user object from the current access token, or returns the existing one
+     * @return the user represented by the access token
+     */
     fun createUserFromCurrent(): User? {
         val userInfo = this.auth0Service.getUserInfo()
         return userInfo?.let {
+            getById(it.sub)
+        } ?: userInfo?.let {
             val newUser = User.fromAuth0UserInfo(it)
             this.userRepository.save(newUser)
         }
