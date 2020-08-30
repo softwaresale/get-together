@@ -3,7 +3,7 @@ package com.softwaresale.gettogether.group
 import com.softwaresale.gettogether.user.User
 import javax.persistence.*
 
-@Entity
+@Entity(name = "GetTogetherGroup")
 class Group(
        val name: String,
        @ManyToOne

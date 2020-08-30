@@ -1,4 +1,4 @@
-package com.softwaresale.gettogether.auth
+package com.softwaresale.gettogether.auth0
 
 import org.springframework.security.oauth2.core.OAuth2Error
 import org.springframework.security.oauth2.core.OAuth2TokenValidator

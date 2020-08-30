@@ -1,7 +1,7 @@
 package com.softwaresale.gettogether.config
 
-import com.softwaresale.gettogether.auth.AudienceValidator
-import com.softwaresale.gettogether.auth.Auth0ConfigurationProperties
+import com.softwaresale.gettogether.auth0.AudienceValidator
+import com.softwaresale.gettogether.auth0.Auth0ConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -20,7 +20,8 @@ class SecurityConfig(
                     it.jwt()
                 }
                 ?.authorizeRequests {
-                    it.mvcMatchers("/**").permitAll() // Temp for development
+                    it.mvcMatchers("/api/**").authenticated()
+                    it.mvcMatchers("/**").permitAll() // Allow access to all other routes that aren't api scoped
                 }
     }
 

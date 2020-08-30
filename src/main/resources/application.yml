@@ -2,6 +2,7 @@
 auth0:
   audience: https://gettogether.com/api
   issuer: https://gettogether.us.auth0.com/
+  userinfo-endpoint: https://gettogether.us.auth0.com/userinfo
 
 spring:
   security:
