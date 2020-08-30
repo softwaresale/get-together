@@ -1,5 +1,6 @@
 package com.softwaresale.gettogether.group
 
+import com.softwaresale.gettogether.event.Event
 import com.softwaresale.gettogether.user.User
 import com.softwaresale.gettogether.user.UserService
 import org.springframework.stereotype.Service
@@ -33,6 +34,11 @@ class GroupService(
 
     fun addUserToGroup(group: Group, user: User): Group {
         group.addMember(user)
-        return groupRepository.save(group)
+        return groupRepository.saveAndFlush(group)
+    }
+
+    fun addEventToGroup(group: Group, event: Event): Group {
+        group.addEvent(event)
+        return groupRepository.saveAndFlush(group)
     }
 }

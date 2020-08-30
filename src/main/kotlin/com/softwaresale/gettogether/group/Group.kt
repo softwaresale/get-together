@@ -1,6 +1,7 @@
 package com.softwaresale.gettogether.group
 
 import com.fasterxml.jackson.annotation.JsonManagedReference
+import com.softwaresale.gettogether.event.Event
 import com.softwaresale.gettogether.user.User
 import javax.persistence.*
 
@@ -11,6 +12,10 @@ class Group(
        @ManyToMany(mappedBy = "memberGroups", cascade = [CascadeType.ALL])
        @JsonManagedReference
        val members: MutableList<User> = mutableListOf(),
+
+       @OneToMany(cascade = [CascadeType.ALL])
+       @JsonManagedReference
+       val events: MutableList<Event> = mutableListOf(),
 
        @Id @GeneratedValue
        val id: Long?,
@@ -37,5 +42,15 @@ class Group(
        fun removeMember(user: User) {
               members.remove(user)
               user.memberGroups.remove(this)
+       }
+
+       fun addEvent(event: Event) {
+              events.add(event)
+              event.group = this
+       }
+
+       fun removeEvent(event: Event) {
+              events.remove(event)
+              event.group = null
        }
 }

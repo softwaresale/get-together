@@ -1,5 +1,6 @@
 package com.softwaresale.gettogether.group
 
+import com.softwaresale.gettogether.event.Event
 import com.softwaresale.gettogether.user.User
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
@@ -35,5 +36,17 @@ class GroupController(
         return groupService.getById(id)?.let {
             groupService.addUserToGroup(it, user)
         } ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Requested group does not exist")
+    }
+
+    @GetMapping("/{id}/events")
+    fun getGroupEvents(@PathVariable id: Long): Iterable<Event> {
+        return this.groupService.getById(id)?.events ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Requested group does not exist")
+    }
+
+    @PutMapping("/{id}/events")
+    fun addGroupEvent(@PathVariable id: Long, @RequestBody event: Event): Group {
+        return this.groupService.getById(id)?.let {
+            this.groupService.addEventToGroup(it, event)
+        } ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Request group does not exist")
     }
 }
