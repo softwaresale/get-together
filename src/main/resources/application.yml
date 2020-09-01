@@ -7,6 +7,17 @@ auth0:
 spring:
   security:
     oauth2:
+      client:
+        registration:
+          auth0:
+            client-id: K2rY3GkUTgeLjFO2P36ShSsrll1E6rMK
+            client-secret: 1ubGeB48x70rGVjz8k8LkXsKq8QeramFS_rwGyxNw-GD75w9_gpoN8dHrnIMVZ84
+            scope:
+              - openid
+              - profile
+        provider:
+          auth0:
+            issuer-uri: https://gettogether.us.auth0.com/
       resourceserver:
         jwt:
           issuer-uri: https://gettogether.us.auth0.com/

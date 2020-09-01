@@ -59,7 +59,7 @@ dependencies {
 }
 
 tasks.withType<ProcessResources> {
-	from("src/main/web/opus-ng/dist/opus-ng") {
+	from("src/main/web/gettogether/dist/gettogether") {
 		into("static/")
 	}
 }
@@ -71,7 +71,7 @@ allOpen {
 }
 
 frontend {
-	packageJsonDirectory.set(projectDir.resolve("src/main/web/opus-ng"))
+	packageJsonDirectory.set(projectDir.resolve("src/main/web/gettogether"))
 	nodeDistributionProvided.set(false)
 	nodeVersion.set("12.18.2")
 	yarnEnabled.set(true)

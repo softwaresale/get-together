@@ -10,6 +10,8 @@ import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator
 import org.springframework.security.oauth2.core.OAuth2TokenValidator
 import org.springframework.security.oauth2.jwt.*
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository
+import org.springframework.web.servlet.config.annotation.CorsRegistry
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @EnableWebSecurity
 class SecurityConfig(
@@ -23,10 +25,23 @@ class SecurityConfig(
                 ?.authorizeRequests {
                     it.mvcMatchers("/api/**").authenticated()
                     it.mvcMatchers("/**").permitAll() // Allow access to all other routes that aren't api scoped
+                    // it.mvcMatchers("/**/*").authenticated()
                 }
                 ?.csrf {
                     it.csrfTokenRepository(CookieCsrfTokenRepository())
                 }
+                ?.cors()
+    }
+
+    @Bean
+    fun corsConfiguration(): WebMvcConfigurer {
+        return object : WebMvcConfigurer {
+            override fun addCorsMappings(registry: CorsRegistry) {
+                registry.addMapping("/api/v1/**/*")
+                        .allowedOrigins("http://localhost:4200")
+                        .allowedMethods("*")
+            }
+        }
     }
 
     @Bean

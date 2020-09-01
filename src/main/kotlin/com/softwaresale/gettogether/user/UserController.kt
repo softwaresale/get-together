@@ -16,7 +16,8 @@ class UserController(
 
     @GetMapping("/me")
     fun getCurrentUser(): User {
-        return this.userService.getCurrentUser() ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Error while fetching user")
+        // return this.userService.getCurrentUser() ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Error while fetching user")
+        return this.userService.getCurrentUser() ?: this.userService.createUserFromCurrent() ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "Error while fetching user")
     }
 
     @PostMapping("/signup")
