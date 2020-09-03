@@ -32,3 +32,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# Frontend files
+node
+yarn
+src/main/web/gettogether/dist
+src/main/web/gettogether/node_modules

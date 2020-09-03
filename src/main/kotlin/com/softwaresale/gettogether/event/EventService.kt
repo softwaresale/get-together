@@ -18,7 +18,7 @@ class EventService(
     fun save(event: Event) = eventRepository.save(event)
 
     fun addRsvp(event: Event, rsvpStatus: RsvpStatus): Event {
-        event.rspvs.add(rsvpStatus)
+        event.rsvps.add(rsvpStatus)
         return eventRepository.saveAndFlush(event)
     }
 

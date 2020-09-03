@@ -20,7 +20,7 @@ class Event(
         val name: String,
         val time: ZonedDateTime,
         @OneToMany(cascade = [CascadeType.ALL])
-        val rspvs: MutableList<RsvpStatus> = mutableListOf(),
+        val rsvps: MutableList<RsvpStatus> = mutableListOf(),
         @Id @GeneratedValue(generator = "system-uuid")
         @GenericGenerator(name = "system-uuid", strategy = "uuid")
         val id: String?,
