@@ -1,0 +1,8 @@
+
+<div style="padding: 16px">
+  <mat-grid-list [cols]="3" rowHeight="300px" gutterSize="16px">
+    <mat-grid-tile *ngFor="let event of events$ | async" colspan="1" rowspan="1">
+      <app-event-card [event]="event"></app-event-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

@@ -1,0 +1,8 @@
+
+<div style="padding: 16px">
+  <mat-grid-list rowHeight="350" [cols]="3" gutterSize="16px">
+    <mat-grid-tile *ngFor="let group of groups" rowspan="1" colspan="1">
+      <app-group-card [group]="group"></app-group-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

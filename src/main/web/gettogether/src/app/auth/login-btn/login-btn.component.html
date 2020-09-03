@@ -1,0 +1,11 @@
+
+<div class="button-box">
+  <ng-container *ngIf="isAuthenticated$ | async; else loginButton">
+    <button mat-stroked-button (click)="onLogout()">LOGOUT</button>
+    <button mat-flat-button color="accent">PROFILE</button>
+  </ng-container>
+  <ng-template #loginButton>
+    <button mat-stroked-button>SIGNUP</button>
+    <button mat-flat-button color="accent" (click)="onLogin()">LOGIN</button>
+  </ng-template>
+</div>
